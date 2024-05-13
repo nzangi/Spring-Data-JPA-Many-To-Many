@@ -1,5 +1,6 @@
 package com.jpamanytomany.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,6 +31,7 @@ public class Student {
                 @JoinColumn(name = "course_id",referencedColumnName = "courseId")
             }
     )
+    @JsonManagedReference
     private Set<Course> courses;
 
 }

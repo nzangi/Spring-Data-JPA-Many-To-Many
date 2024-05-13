@@ -1,5 +1,6 @@
 package com.jpamanytomany.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,9 +22,10 @@ public class Course {
     private String courseTitle;
     private String courseAbbreviation;
     private int courseModules;
-    private double couseFee;
+    private double courseFee;
 
     @ManyToMany(mappedBy = "courses",fetch = FetchType.LAZY)
+    @JsonBackReference
     private Set<Student> students;
 
 }
