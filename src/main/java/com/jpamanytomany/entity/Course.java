@@ -23,8 +23,7 @@ public class Course {
     private int courseModules;
     private double couseFee;
 
-    @ManyToMany(mappedBy = "C" +
-            "ourse",fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "courses",fetch = FetchType.LAZY)
     private Set<Student> students;
 
 }
