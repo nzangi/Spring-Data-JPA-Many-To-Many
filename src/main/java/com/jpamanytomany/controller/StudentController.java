@@ -1,34 +1,38 @@
 package com.jpamanytomany.controller;
 
+import com.jpamanytomany.dto.CourseDTO;
+import com.jpamanytomany.dto.StudentDTO;
 import com.jpamanytomany.entity.Course;
 import com.jpamanytomany.entity.Student;
-import com.jpamanytomany.repository.CourseRepository;
 import com.jpamanytomany.service.StudentService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/student-course")
 public class StudentController {
 
     /*
-    * Create USe of Account Mapper
+    * Create Use of Account Mapper
+    * Create A DTO
+    * Create StudentDTO Service interface for StudentDTO Service Implementation
     * Use of Response Body and Exception handling
     *
-    * */
+    */
 
     //Constructor Dependency Injection
+//    private StudentService studentService;
     private StudentService studentService;
     public StudentController(StudentService studentService){
-        this.studentService=studentService;
+        this.studentService = studentService;
     }
+
 
     //save student course controller
     @PostMapping
-    public Student saveStudentWithCourse(@RequestBody Student student){
-        return studentService.saveStudentWithCourse(student);
+    public StudentDTO saveStudentWithCourse(@RequestBody StudentDTO studentDTO){
+        return studentService.saveStudentWithCourse(studentDTO);
     }
 
     //get all students
@@ -36,19 +40,21 @@ public class StudentController {
     public List<Student> getAllStudents(){
         return studentService.getAllStudents();
     }
+
     // get student by Id
     @GetMapping("/{studentId}")
-    public Student getStudent(@PathVariable Integer studentId){
+    public StudentDTO getStudent(@PathVariable Integer studentId){
         return studentService.getStudent(studentId);
     }
+
     //Get all students with a name
     @GetMapping("/find/{studentName}")
-    public List<Student> getStudentsWithName(@PathVariable String studentName){
+    public List<StudentDTO> getStudentsWithName(@PathVariable String studentName){
         return studentService.getStudentsWithName(studentName);
     }
     //get course with fee less than
     @GetMapping("/search/{courseName}")
-    public List<Course> getCourseWithFeeLess(@PathVariable double courseName){
+    public List<CourseDTO> getCourseWithFeeLess(@PathVariable double courseName){
         return studentService.getCourseLessThan(courseName);
     }
 

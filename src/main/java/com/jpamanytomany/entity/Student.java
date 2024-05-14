@@ -1,17 +1,16 @@
 package com.jpamanytomany.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.jpamanytomany.dto.CourseDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Data
 @Setter
 @Getter
 @Table(name = "student_table")
@@ -31,6 +30,7 @@ public class Student {
                 @JoinColumn(name = "course_id",referencedColumnName = "courseId")
             }
     )
+
     @JsonManagedReference
     private Set<Course> courses;
 
