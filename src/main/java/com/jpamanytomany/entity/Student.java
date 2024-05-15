@@ -7,6 +7,8 @@ import lombok.*;
 
 import java.util.Set;
 
+//Student Table/Model Class
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity

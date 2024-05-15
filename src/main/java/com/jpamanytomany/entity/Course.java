@@ -9,6 +9,8 @@ import lombok.Setter;
 
 import java.util.Set;
 
+//Student Course/Model Class
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity

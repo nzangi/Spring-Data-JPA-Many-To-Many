@@ -3,6 +3,7 @@ package com.jpamanytomany.mapper;
 import com.jpamanytomany.dto.StudentDTO;
 import com.jpamanytomany.entity.Student;
 
+//Student Mapper
 public class StudentMapper {
     public static Student mapToStudent(StudentDTO studentDTO){
         Student student = new Student(
@@ -10,7 +11,7 @@ public class StudentMapper {
                 studentDTO.getStudentName(),
                 studentDTO.getStudentAge(),
                 studentDTO.getStudentDepartment(),
-                studentDTO.getCourses()
+                CourseMapper.mapToCourseSet(studentDTO.getCourses())
         );
         return student;
     }
@@ -20,7 +21,7 @@ public class StudentMapper {
                 student.getStudentName(),
                 student.getStudentAge(),
                 student.getStudentDepartment(),
-                student.getCourses()
+                CourseMapper.mapToCourseDTOSet(student.getCourses())
         );
         return studentDTO;
     }

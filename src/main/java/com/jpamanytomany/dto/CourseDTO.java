@@ -18,5 +18,5 @@ public class CourseDTO {
     private String courseAbbreviation;
     private int courseModules;
     private double courseFee;
-    private Set<Student> students;
+    private Set<StudentDTO> students;
 }

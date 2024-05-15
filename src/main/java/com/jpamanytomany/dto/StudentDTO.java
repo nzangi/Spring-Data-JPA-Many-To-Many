@@ -1,6 +1,5 @@
 package com.jpamanytomany.dto;
 
-import com.jpamanytomany.entity.Course;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,5 +17,5 @@ public class StudentDTO {
     private String studentName;
     private int studentAge;
     private String studentDepartment;
-    private Set<Course> courses;
+    private Set<CourseDTO> courses;
 }
