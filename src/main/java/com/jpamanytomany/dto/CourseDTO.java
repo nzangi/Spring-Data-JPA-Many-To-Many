@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -18,5 +19,5 @@ public class CourseDTO {
     private String courseAbbreviation;
     private int courseModules;
     private double courseFee;
-    private Set<StudentDTO> students;
+    private List<StudentDTO> students;
 }

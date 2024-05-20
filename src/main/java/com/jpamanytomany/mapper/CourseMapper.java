@@ -3,6 +3,7 @@ package com.jpamanytomany.mapper;
 import com.jpamanytomany.dto.CourseDTO;
 import com.jpamanytomany.entity.Course;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 //Course Mapper
@@ -15,6 +16,8 @@ public class CourseMapper {
                 courseDTO.getCourseModules(),
                 courseDTO.getCourseFee(),
                 null
+//                StudentMapper.mapToStudentList(courseDTO.getStudents())
+
         );
 
         return course;
@@ -27,18 +30,21 @@ public class CourseMapper {
                 course.getCourseModules(),
                 course.getCourseFee(),
                 null
+//                StudentMapper.mapToStudentDTOList(course.getStudents())
+
         );
 
         return courseDTO;
     }
-    public static Set<Course> mapToCourseSet(Set<CourseDTO> courseDTOs) {
+
+    public static List<Course> mapToCourseList(List<CourseDTO> courseDTOs) {
         return courseDTOs.stream()
                 .map(CourseMapper::mapToCourse)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
-    public static Set<CourseDTO> mapToCourseDTOSet(Set<Course> courses){
-        return courses.stream().map(CourseMapper::mapToCourseDTO).collect(Collectors.toSet());
+    public static List<CourseDTO> mapToCourseDTOList(List<Course> courses){
+        return courses.stream().map(CourseMapper::mapToCourseDTO).collect(Collectors.toList());
     }
 
 }

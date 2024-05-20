@@ -3,6 +3,7 @@ package com.jpamanytomany.controller;
 import com.jpamanytomany.dto.CourseDTO;
 import com.jpamanytomany.dto.StudentDTO;
 import com.jpamanytomany.entity.Student;
+import com.jpamanytomany.service.CourseService;
 import com.jpamanytomany.service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/student-course")
+@RequestMapping("/student")
 public class StudentController {
 
     /*
@@ -37,26 +38,20 @@ public class StudentController {
 
     //get all students
     @GetMapping
-    public ResponseEntity<List<Student>> getAllStudents(){
-        return new ResponseEntity<>(studentService.getAllStudents(),HttpStatus.OK);
+    public ResponseEntity<List<Student>> findAllStudents(){
+        return new ResponseEntity<>(studentService.findAllStudents(),HttpStatus.OK);
     }
 
     // get student by Id
     @GetMapping("/{studentId}")
-    public ResponseEntity<StudentDTO> getStudent(@PathVariable Integer studentId){
-        return new ResponseEntity<>(studentService.getStudent(studentId),HttpStatus.OK);
+    public ResponseEntity<StudentDTO> findStudent(@PathVariable Integer studentId){
+        return new ResponseEntity<>(studentService.findStudent(studentId),HttpStatus.OK);
     }
 
     //Get all students with a name
     @GetMapping("/find/{studentName}")
-    public ResponseEntity<List<StudentDTO>> getStudentsWithName(@PathVariable String studentName){
-        return new ResponseEntity<>(studentService.getStudentsWithName(studentName),HttpStatus.OK);
-    }
-
-    //get course with fee less than
-    @GetMapping("/search/{courseName}")
-    public ResponseEntity<List<CourseDTO>> getCourseWithFeeLess(@PathVariable double courseName){
-        return new ResponseEntity<>(studentService.getCourseLessThan(courseName),HttpStatus.OK);
+    public ResponseEntity<List<StudentDTO>> findStudentsWithName(@PathVariable String studentName){
+        return new ResponseEntity<>(studentService.findStudentsWithName(studentName),HttpStatus.OK);
     }
 
 }

@@ -1,7 +1,12 @@
 package com.jpamanytomany.mapper;
 
+import com.jpamanytomany.dto.CourseDTO;
 import com.jpamanytomany.dto.StudentDTO;
+import com.jpamanytomany.entity.Course;
 import com.jpamanytomany.entity.Student;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 //Student Mapper
 public class StudentMapper {
@@ -11,7 +16,7 @@ public class StudentMapper {
                 studentDTO.getStudentName(),
                 studentDTO.getStudentAge(),
                 studentDTO.getStudentDepartment(),
-                CourseMapper.mapToCourseSet(studentDTO.getCourses())
+                CourseMapper.mapToCourseList(studentDTO.getCourses())
         );
         return student;
     }
@@ -21,9 +26,19 @@ public class StudentMapper {
                 student.getStudentName(),
                 student.getStudentAge(),
                 student.getStudentDepartment(),
-                CourseMapper.mapToCourseDTOSet(student.getCourses())
+                CourseMapper.mapToCourseDTOList(student.getCourses())
         );
         return studentDTO;
+    }
+
+    public static List<Student> mapToStudentList(List<StudentDTO> studentDTOs) {
+        return studentDTOs.stream()
+                .map(StudentMapper::mapToStudent)
+                .collect(Collectors.toList());
+    }
+
+    public static List<StudentDTO> mapToStudentDTOList(List<Student> students){
+        return students.stream().map(StudentMapper::mapToStudentDTO).collect(Collectors.toList());
     }
 
 }

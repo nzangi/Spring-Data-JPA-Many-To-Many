@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 //Student Course/Model Class
@@ -19,7 +20,7 @@ import java.util.Set;
 @Table(name = "course_table")
 public class Course {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int courseId;
     private String courseTitle;
     private String courseAbbreviation;
@@ -28,6 +29,6 @@ public class Course {
 
     @ManyToMany(mappedBy = "courses",fetch = FetchType.LAZY)
     @JsonBackReference
-    private Set<Student> students;
+    private List<Student> students;
 
 }

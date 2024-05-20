@@ -5,6 +5,7 @@ import com.jpamanytomany.dto.CourseDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.Set;
 
 //Student Table/Model Class
@@ -18,11 +19,12 @@ import java.util.Set;
 @Table(name = "student_table")
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int studentId;
     private String studentName;
     private int studentAge;
     private String studentDepartment;
+
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name = "student_course_table",
             joinColumns = {
@@ -34,6 +36,6 @@ public class Student {
     )
 
     @JsonManagedReference
-    private Set<Course> courses;
+    private List<Course> courses;
 
 }

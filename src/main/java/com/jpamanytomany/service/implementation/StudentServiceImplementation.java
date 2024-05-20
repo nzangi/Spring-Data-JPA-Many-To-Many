@@ -19,13 +19,9 @@ import java.util.stream.Collectors;
 
 public class StudentServiceImplementation implements StudentService {
     private StudentRepository studentRepository;
-    private CourseRepository courseRepository;
     // constructor injection
-    public StudentServiceImplementation(StudentRepository studentRepository,
-                                        CourseRepository courseRepository){
+    public StudentServiceImplementation(StudentRepository studentRepository){
         this.studentRepository = studentRepository;
-        this.courseRepository=courseRepository;
-
     }
 
     // save student with course name
@@ -36,12 +32,12 @@ public class StudentServiceImplementation implements StudentService {
     }
 
     // get all students
-    public List<Student> getAllStudents(){
+    public List<Student> findAllStudents(){
         return studentRepository.findAll();
     }
 
     //  get student by name service
-    public StudentDTO getStudent(Integer studentId){
+    public StudentDTO findStudent(Integer studentId){
         Student student= studentRepository.findById(studentId).orElseThrow(
                 () -> new RunTimeExceptionError("StudentDTO Id "+ studentId + " does not exists")
         );
@@ -49,14 +45,10 @@ public class StudentServiceImplementation implements StudentService {
     }
 
     // get all student with a certain name
-    public List<StudentDTO> getStudentsWithName(String studentName){
+    public List<StudentDTO> findStudentsWithName(String studentName){
         List<Student> students = studentRepository.findByStudentNameContaining(studentName);
         return students.stream().map(StudentMapper::mapToStudentDTO).collect(Collectors.toList());
     }
 
-    // get course whose fee is less than entered amount
-    public List<CourseDTO> getCourseLessThan(double coursePrice){
-        List<Course> courses = courseRepository.findByCourseFeeLessThan(coursePrice);
-        return courses.stream().map(CourseMapper::mapToCourseDTO).collect(Collectors.toList());
-    }
+
 }

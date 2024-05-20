@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -17,5 +18,5 @@ public class StudentDTO {
     private String studentName;
     private int studentAge;
     private String studentDepartment;
-    private Set<CourseDTO> courses;
+    private List<CourseDTO> courses;
 }
